@@ -17,7 +17,10 @@ Use cases that come to mind:
   Confluence markup is the same as the one used in JIRA.  There is a
   Doxia site renderer for Confluence markup, so it is possible to use
   Confluence to create pages for your Maven site instead of the
-  cumbersome APT markup.
+  cumbersome APT markup. Add the following to your `.emacs` file to
+  automatically enable jira-markup-mode for Confluence markup files:
+  `(add-to-list 'auto-mode-alist '("\\.confluence$"
+  . jira-markup-mode))`
 
 * Edit the contents for browser text fields in your favourite editor
   (aka Emacs) instead of inside the browser.  It is a pain to write
@@ -25,7 +28,12 @@ Use cases that come to mind:
   directly in the browser.  Luckily here is a Firefox add-on to the
   rescue: [It's All Text!][atxt].  It allows you to open the content
   of a browser text field in an external editor and after leaving the
-  editor insert the updated text back into the original text field.
+  editor insert the updated text back into the original text
+  field. Add the following to your `.emacs` file to automatically
+  enable jira-markup-mode for files opened with "It's All Text" from
+  within JIRA `(add-to-list 'auto-mode-alist
+  '("/itsalltext/.*jira.*\\.txt$" . jira-markup-mode))` (requires that
+  the hostname of your JIRA installation contains 'jira').
 
 
 [jira]: http://www.atlassian.com/software/jira/overview/
