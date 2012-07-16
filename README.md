@@ -41,3 +41,4 @@ Use cases that come to mind:
 [jirael]: http://emacswiki.org/emacs/jira.el
 [confl]: http://www.atlassian.com/software/confluence/overview/
 [atxt]: https://addons.mozilla.org/en-US/firefox/addon/its-all-text/
+
