@@ -9,7 +9,7 @@ the markup used by [Atlassian JIRA][jira] in a similar fashion as
 [markdown-mode][mdmode] for Markdown syntax.
 
 Jira Markup Mode does not interact with the JIRA issue tracker in any
-way. It is not meant as a replacement for `[jira.el][jirael]`.
+way.  It is not meant as a replacement for [jira.el][jirael].
 
 Use cases that come to mind:
 
