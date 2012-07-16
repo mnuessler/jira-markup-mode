@@ -1255,8 +1255,9 @@ This is an exact copy of `line-number-at-pos' for use in emacs21."
   ;; do the initial link fontification
   (jira-markup-fontify-buffer-wiki-links))
 
-(add-to-list 'auto-mode-alist '("\\.jira$" . jira-markup-mode))
+(add-to-list 'auto-mode-alist '("/itsalltext/.*jira.*\\.txt$" . jira-markup-mode))
 
 (provide 'jira-markup-mode)
 
 ;;; jira-markup-mode.el ends here
+
