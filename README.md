@@ -13,7 +13,7 @@ way.  It is not meant as a replacement for [jira.el][jirael].
 
 Use cases that come to mind:
 
-* Edit files in [Confluence][confl] markup for a Maven site.
+* *Edit files in [Confluence][confl] markup for a Maven site.*
 
   Confluence markup is the same as the one used in JIRA.  There is a
   Doxia site renderer for Confluence markup, so it is possible to use
@@ -26,8 +26,8 @@ Use cases that come to mind:
   `(add-to-list 'auto-mode-alist '("\\.confluence$"
   . jira-markup-mode))`
 
-* Edit the contents for browser text fields in your favourite editor
-  (aka Emacs) instead of inside the browser.
+* *Edit the contents for browser text fields in your favourite editor
+  (aka Emacs) instead of inside the browser.*
 
   It is a pain to write and edit longer texts such as issue
   descriptions and comments directly in the browser.  Luckily here is
@@ -37,9 +37,9 @@ Use cases that come to mind:
   into the original text field.
 
   Add the following to your `.emacs` file to automatically enable
-  jira-markup-mode for files opened with "It's All Text" from within
-  JIRA (requires that the hostname of your JIRA installation contains
-  'jira'):
+  jira-markup-mode for files opened with [It's All Text!][atxt] from
+  within JIRA (requires that the hostname of your JIRA installation
+  contains 'jira'):
 
   `(add-to-list 'auto-mode-alist '("/itsalltext/.*jira.*\\.txt$"
   . jira-markup-mode))`
