@@ -323,7 +323,7 @@ Otherwise, they will be treated as [[PageName|alias text]]."
   "Regular expression for level 6 headers.")
 
 (defconst jira-markup-regex-hr
-  "^\\(\\*[ ]?\\*[ ]?\\*[ ]?[\\* ]*\\|-[ ]?-[ ]?-[--- ]*\\)$"
+  "^\\(\\*[ ]?\\*[ ]?\\*[ ]?[\\* ]*\\|-[ ]?-[ ]?-[---- ]*\\)$"
   "Regular expression for matching Jira-Markup horizontal rules.")
 
 (defconst jira-markup-regex-code
