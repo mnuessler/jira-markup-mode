@@ -292,7 +292,7 @@ Otherwise, they will be treated as [[PageName|alias text]]."
 
 (defconst jira-markup-regex-reference-definition
   "^ \\{0,3\\}\\(\\[.*\\]\\):\\s *\\(.*?\\)\\s *\\( \"[^\"]*\"$\\|$\\)"
-  "Regular expression for a link definition [id]: ...")
+  "Regular expression for a link id [definition]: ...")
 
 (defconst jira-markup-regex-header
   "#+\\|\\S-.*\n\\(?:\\(===+\\)\\|\\(---+\\)\\)$"
