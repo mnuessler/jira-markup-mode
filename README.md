@@ -1,4 +1,4 @@
-Jira Markup Mode [![Build Status](https://secure.travis-ci.org/mnuessler/cakupan-maven-plugin.png)](http://travis-ci.org/mnuessler/cakupan-maven-plugin)
+Jira Markup Mode [![Build Status](https://secure.travis-ci.org/mnuessler/jira-markup-mode.png)](http://travis-ci.org/mnuessler/jira-markup-mode)
 ================
 
 > Please note: This project is still work in progress and
