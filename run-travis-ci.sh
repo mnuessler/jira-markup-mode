@@ -4,7 +4,7 @@ if [ `uname` = "Darwin" ]; then
   # for local testing only
   EMACS="/Applications/Emacs.app/Contents/MacOS/Emacs"
 elif [ `which emacs-snapshot` != "" ]; then
-  EMACS="$(which emscs-snapshot)"
+  EMACS="$(which emacs-snapshot)"
 else
   EMACS="$(which emacs)"
 fi
