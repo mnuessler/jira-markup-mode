@@ -1,0 +1,3 @@
+language: emacs-lisp
+script: ./run-travis-ci.sh
+
