@@ -323,7 +323,7 @@ Otherwise, they will be treated as [[PageName|alias text]]."
   "Regular expression for level 6 headers.")
 
 (defconst jira-markup-regex-hr
-  "^\\(\\*[ ]?\\*[ ]?\\*[ ]?[\\* ]*\\|-[ ]?-[ ]?-[---- ]*\\)$"
+  "^[ \t]*----$"
   "Regular expression for matching Jira-Markup horizontal rules.")
 
 (defconst jira-markup-regex-code
@@ -347,7 +347,7 @@ Otherwise, they will be treated as [[PageName|alias text]]."
   "Regular expression for matching italic text.")
 
 (defconst jira-markup-regex-blockquote
-  "^bq\\. \\(.*\n\\)+\n"
+  "^[ \t]*bq\\."
   "Regular expression for matching blockquote lines.")
 
 (defconst jira-markup-regex-line-break
