@@ -282,78 +282,119 @@ Otherwise, they will be treated as [[PageName|alias text]]."
   :group 'jira-markup-faces)
 
 ;; regular expressions
+;; TODO
 (defconst jira-markup-regex-link-inline
   "\\(!?\\[[^]]*?\\]\\)\\(([^\\)]*)\\)"
   "Regular expression for a [text](file) or an image link ![text](file).")
 
+;; TODO
 (defconst jira-markup-regex-link-reference
   "\\(!?\\[[^]]+?\\]\\)[ ]?\\(\\[[^]]*?\\]\\)"
   "Regular expression for a reference link [text][id].")
 
+;; TODO
 (defconst jira-markup-regex-reference-definition
   "^ \\{0,3\\}\\(\\[.*\\]\\):\\s *\\(.*?\\)\\s *\\( \"[^\"]*\"$\\|$\\)"
   "Regular expression for a link id [definition]: ...")
 
+;; TODO
 (defconst jira-markup-regex-header
   "#+\\|\\S-.*\n\\(?:\\(===+\\)\\|\\(---+\\)\\)$"
   "Regexp identifying Jira-Markup headers.")
 
+; headings
 (defconst jira-markup-regex-header-1
-  "^\\(h1\\. \\)\\(.*?\\)$"
+  "^\\s-*h1\\.\\s-+.*$"
   "Regular expression for level 1 headers.")
 
 (defconst jira-markup-regex-header-2
-  "^\\(h2\\. \\)\\(.*?\\)$"
+  "^\\s-*h2\\.\\s-+.*$"
   "Regular expression for level 2 headers.")
 
 (defconst jira-markup-regex-header-3
-  "^\\(h3\\. \\)\\(.*?\\)$"
+  "^\\s-*h3\\.\\s-+.*$"
   "Regular expression for level 3 headers.")
 
 (defconst jira-markup-regex-header-4
-  "^\\(h4\\. \\)\\(.*?\\)$"
+  "^\\s-*h4\\.\\s-+.*$"
   "Regular expression for level 4 headers.")
 
 (defconst jira-markup-regex-header-5
-  "^\\(h5\\. \\)\\(.*?\\)$"
+  "^\\s-*h5\\.\\s-+.*$"
   "Regular expression for level 5 headers.")
 
 (defconst jira-markup-regex-header-6
-  "^\\(h6\\. \\)\\(.*?\\)$"
+  "^\\s-*h6\\.\\s-+.*$"
   "Regular expression for level 6 headers.")
 
 (defconst jira-markup-regex-hr
-  "^[ \t]*----$"
+  "^\\s-*----$"
   "Regular expression for matching Jira-Markup horizontal rules.")
 
+;; TODO
 (defconst jira-markup-regex-code
   "\\(^\\|[^\\]\\)\\(\\(`\\{1,2\\}\\)\\([^ \\]\\|[^ ]\\(.\\|\n[^\n]\\)*?[^ \\]\\)\\3\\)"
   "Regular expression for matching inline code fragments.")
 
+;; TODO
 (defconst jira-markup-regex-pre
   "^\\(    \\|\t\\).*$"
   "Regular expression for matching preformatted text sections.")
 
+;; TODO
 (defconst jira-markup-regex-list
   "^[ \t]*\\([0-9]+\\.\\|[\\*\\+-]\\) "
   "Regular expression for matching list markers.")
 
-(defconst jira-markup-regex-bold
-  "\\(^\\|[^\\]\\)\\(\\(*\\)\\(.\\|\n[^\n]\\)*?[^\\ ]\\3\\)"
-  "Regular expression for matching bold text.")
+; text effects
+(defconst jira-markup-regex-strong
+  "\\s-+\\*.*\\*\\s-+"
+  "Regular expression for matching *strong* text.")
 
-(defconst jira-markup-regex-italic
-  "\\(^\\|[^\\]\\)\\(\\(_\\)\\([^ \\]\\3\\|[^ ]\\(.\\|\n[^\n]\\)*?[^\\ ]\\3\\)\\)"
-  "Regular expression for matching italic text.")
+(defconst jira-markup-regex-emphasis
+  "\\s-+_.*_\\s-+"
+  "Regular expression for matching _emphasized_ text.")
+
+; new
+(defconst jira-markup-regex-citation
+  "\\s-+\\?\\?.*\\s-+"
+  "Regular expression for matching ??cited?? text.")
+
+; new
+(defconst jira-markup-regex-deleted
+  "\\s-+-.*-\\s-"
+  "Regular expression for matching -deleted- text.")
+
+; new
+(defconst jira-markup-regex-inserted
+  "\\s-+\\+.*\\+\\s-+"
+  "Regular expression for matching +inserted+ text.")
+
+; new
+(defconst jira-markup-regex-superscript
+  "\\s-+^.*^\\s-+"
+  "Regular expression for matching ^superscript^ text.")
+
+; new
+(defconst jira-markup-regex-subscript
+  "\\s-+~.*~\\s-+"
+  "Regular expression for matching ~subscript~ text.~")
+
+; new
+(defconst jira-markup-regex-monospaced
+  "\\s-+{{.*}}\\s-+"
+  "Regular expression for matching {{monospaced}} text.")
 
 (defconst jira-markup-regex-blockquote
   "^[ \t]*bq\\."
   "Regular expression for matching blockquote lines.")
 
+;; TODO
 (defconst jira-markup-regex-line-break
   "  $"
   "Regular expression for matching line breaks.")
 
+;; TODO
 (defconst jira-markup-regex-wiki-link
   "\\[\\[\\([^]|]+\\)\\(|\\([^]]+\\)\\)?\\]\\]"
   "Regular expression for matching wiki links.
@@ -410,8 +451,8 @@ text.")
          '((1 jira-markup-reference-face t)
            (2 jira-markup-url-face t)
            (3 jira-markup-link-title-face t)))
-   (cons jira-markup-regex-bold '(2 jira-markup-bold-face))
-   (cons jira-markup-regex-italic '(2 jira-markup-italic-face))
+   (cons jira-markup-regex-strong '(2 jira-markup-bold-face))
+   (cons jira-markup-regex-emphasis '(2 jira-markup-italic-face))
    )
   "Syntax highlighting for Jira-Markup files.")
 
