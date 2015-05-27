@@ -1245,14 +1245,10 @@ This is an exact copy of `line-number-at-pos' for use in emacs21."
   ;; Natural Jira-Markup tab width
   (setq tab-width 4)
   ;; Comments
-  (make-local-variable 'comment-start)
-  (setq comment-start "<!-- ")
-  (make-local-variable 'comment-end)
-  (setq comment-end " -->")
-  (make-local-variable 'comment-start-skip)
-  (setq comment-start-skip "<!--[ \t]*")
-  (make-local-variable 'comment-column)
-  (setq comment-column 0)
+  (set (make-local-variable 'comment-start) "<!-- ")
+  (set (make-local-variable 'comment-end) " -->")
+  (set (make-local-variable 'comment-start-skip) "<!--[ \t]*")
+  (set (make-local-variable 'comment-column) 0)
   ;; Font lock.
   (set (make-local-variable 'font-lock-defaults)
        '(jira-markup-mode-font-lock-keywords))
@@ -1263,10 +1259,8 @@ This is an exact copy of `line-number-at-pos' for use in emacs21."
   (set (make-local-variable 'paragraph-start)
        "\f\\|[ \t]*$\\|^[ \t]*[*+-] \\|^[ \t]*[0-9]+\\.\\|^[ \t]*: ")
   ;; Outline mode
-  (make-local-variable 'outline-regexp)
-  (setq outline-regexp jira-markup-regex-header)
-  (make-local-variable 'outline-level)
-  (setq outline-level 'jira-markup-outline-level)
+  (set (make-local-variable 'outline-regexp) jira-markup-regex-header)
+  (set (make-local-variable 'outline-level) 'jira-markup-outline-level)
   ;; Cause use of ellipses for invisible text.
   (add-to-invisibility-spec '(outline . t))
   ;; Indentation and filling
