@@ -1086,7 +1086,7 @@ The location of the link component depends on the value of
 Spaces in NAME are replaced with `jira-markup-link-space-sub-char'.
 When in `gfm-mode', follow GitHub's conventions where [[Test Test]]
 and [[test test]] both map to Test-test.ext."
-  (let ((basename (jira-markup-replace-regexp-in-string
+  (let ((basename (replace-regexp-in-string
                    "[[:space:]\n]" jira-markup-link-space-sub-char name)))
     (when (eq major-mode 'gfm-mode)
       (setq basename (concat (upcase (substring basename 0 1))
