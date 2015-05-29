@@ -1,5 +1,7 @@
-Jira Markup Mode [![Build Status](https://secure.travis-ci.org/mnuessler/jira-markup-mode.png)](http://travis-ci.org/mnuessler/jira-markup-mode)
-================
+# Jira Markup Mode
+
+[![Build Status][travis-badge]][travis]
+[![MELPA][melpa-badge]][melpa]
 
 > Please note: This project is still work in progress and
 > functionality is only partially implemented yet.
@@ -50,3 +52,8 @@ Use cases that come to mind:
 [jirael]: http://emacswiki.org/emacs/jira.el
 [confl]: http://www.atlassian.com/software/confluence/overview/
 [atxt]: https://addons.mozilla.org/en-US/firefox/addon/its-all-text/
+
+[travis]: http://travis-ci.org/mnuessler/jira-markup-mode
+[travis-badge]: https://travis-ci.org/mnuessler/jira-markup-mode.svg?branch=master
+[melpa]: http://melpa.org/#/jira-markup-mode
+[melpa-badge]: http://melpa.org/packages/jira-markup-mode-badge.svg
