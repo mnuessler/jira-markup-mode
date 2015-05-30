@@ -1,9 +1,9 @@
 #!/bin/sh
 
-if [ `uname` = "Darwin" ]; then
+if [ "$(uname)" = "Darwin" ]; then
   # for local testing only
   EMACS="/Applications/Emacs.app/Contents/MacOS/Emacs"
-elif [ `which emacs-snapshot` != "" ]; then
+elif [ "$(which emacs-snapshot)" != "" ]; then
   EMACS="$(which emacs-snapshot)"
 else
   EMACS="$(which emacs)"
