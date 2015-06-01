@@ -1,5 +1,4 @@
-(when (require 'undercover nil t)
-  (undercover "jira-markup-mode.el"))
+(undercover "jira-markup-mode.el")
 
 (require 'ert)
 (require 'jira-markup-mode)
