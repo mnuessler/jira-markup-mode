@@ -1,6 +1,7 @@
 # Jira Markup Mode
 
 [![Build Status][travis-badge]][travis]
+[![Coverage Status][coveralls-badge]][coveralls]
 [![MELPA][melpa-badge]][melpa]
 
 > Please note: This project is still work in progress and
@@ -55,5 +56,7 @@ Use cases that come to mind:
 
 [travis]: http://travis-ci.org/mnuessler/jira-markup-mode
 [travis-badge]: https://travis-ci.org/mnuessler/jira-markup-mode.svg?branch=master
+[coveralls]: https://coveralls.io/r/mnuessler/jira-markup-mode?branch=master
+[coveralls-badge]: https://coveralls.io/repos/mnuessler/jira-markup-mode/badge.svg?branch=master
 [melpa]: http://melpa.org/#/jira-markup-mode
 [melpa-badge]: http://melpa.org/packages/jira-markup-mode-badge.svg

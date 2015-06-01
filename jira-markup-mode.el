@@ -1,6 +1,6 @@
 ;;; jira-markup-mode.el --- Emacs Major mode for JIRA-markup-formatted text files
 
-;; Copyright (C) 2012 Matthias Nuessler <m.nuessler@web.de>
+;; Copyright (C) 2012-2015 Matthias Nuessler <m.nuessler@web.de>
 
 ;; Author: Matthias Nuessler <m.nuessler@web.de>>
 ;; Created: July 15, 2012
@@ -378,7 +378,7 @@ Otherwise, they will be treated as [[PageName|alias text]]."
 ; new
 (defconst jira-markup-regex-subscript
   "\\s-+~.*~\\s-+"
-  "Regular expression for matching ~subscript~ text.~")
+  "Regular expression for matching ~subscript~ text.")
 
 ; new
 (defconst jira-markup-regex-monospaced
