@@ -713,6 +713,14 @@ as inline code."
   (jira-markup-wrap-or-insert "{{" "}}")
   (backward-char 2))
 
+(defun jira-markup-insert-code-block ()
+  "Insert markup for a block of code.
+If Transient Mark mode is on and a region is active, it is made a
+code block."
+  (interactive)
+  (jira-markup-wrap-or-insert "{code}\n" "\n{code}\n")
+  (backward-char 8))
+
 (defun jira-markup-insert-link ()
   "Insert an inline link of the form []().
 If Transient Mark mode is on and a region is active, it is used
@@ -996,6 +1004,7 @@ it in the usual way."
     (define-key map "\C-c\C-se" 'jira-markup-insert-italic)
     (define-key map "\C-c\C-pf" 'jira-markup-insert-code)
     (define-key map "\C-c\C-sc" 'jira-markup-insert-code)
+    (define-key map (kbd "C-c C-s C") 'jira-markup-insert-code-block)
     (define-key map "\C-c\C-sb" 'jira-markup-insert-blockquote)
     (define-key map "\C-c\C-s\C-b" 'jira-markup-blockquote-region)
     (define-key map "\C-c\C-sp" 'jira-markup-insert-pre)
@@ -1043,6 +1052,7 @@ it in the usual way."
     ["Blockquote" jira-markup-insert-blockquote]
     ["Preformatted" jira-markup-insert-pre]
     ["Code" jira-markup-insert-code]
+    ["Code block" jira-markup-insert-code-block]
     "---"
     ["Insert inline link" jira-markup-insert-link]
     ["Insert reference link" jira-markup-insert-reference-link-dwim]
