@@ -348,11 +348,11 @@ Otherwise, they will be treated as [[PageName|alias text]]."
 
 ; text effects
 (defconst jira-markup-regex-strong
-  "\\s-+\\*.*\\*\\s-+"
+  "\\s-+\\*.*?\\*\\s-+"
   "Regular expression for matching *strong* text.")
 
 (defconst jira-markup-regex-emphasis
-  "\\s-+_.*_\\s-+"
+  "\\s-+_.*?_\\s-+"
   "Regular expression for matching _emphasized_ text.")
 
 ; new
@@ -362,27 +362,27 @@ Otherwise, they will be treated as [[PageName|alias text]]."
 
 ; new
 (defconst jira-markup-regex-deleted
-  "\\s-+-.*-\\s-"
+  "\\s-+-.*?-\\s-"
   "Regular expression for matching -deleted- text.")
 
 ; new
 (defconst jira-markup-regex-inserted
-  "\\s-+\\+.*\\+\\s-+"
+  "\\s-+\\+.*?\\+\\s-+"
   "Regular expression for matching +inserted+ text.")
 
 ; new
 (defconst jira-markup-regex-superscript
-  "\\s-+^.*^\\s-+"
+  "\\s-+^.*?^\\s-+"
   "Regular expression for matching ^superscript^ text.")
 
 ; new
 (defconst jira-markup-regex-subscript
-  "\\s-+~.*~\\s-+"
+  "\\s-+~.*?~\\s-+"
   "Regular expression for matching ~subscript~ text.")
 
 ; new
 (defconst jira-markup-regex-monospaced
-  "\\s-+{{.*}}\\s-+"
+  "\\s-+{{.*?}}\\s-+"
   "Regular expression for matching {{monospaced}} text.")
 
 (defconst jira-markup-regex-blockquote
