@@ -162,6 +162,9 @@ Otherwise, they will be treated as [[PageName|alias text]]."
 (defvar jira-markup-inline-code-face 'jira-markup-inline-code-face
   "Face name to use for inline code.")
 
+(defvar jira-markup-deleted-face 'jira-markup-deleted-face
+  "Face name to use for deleted code.")
+
 (defvar jira-markup-list-face 'jira-markup-list-face
   "Face name to use for list markers.")
 
@@ -239,6 +242,11 @@ Otherwise, they will be treated as [[PageName|alias text]]."
 (defface jira-markup-inline-code-face
   '((t (:inherit font-lock-constant-face)))
   "Face for inline code."
+  :group 'jira-markup-faces)
+
+(defface jira-markup-deleted-face
+  '((t (:inherit shadow :strike-through "red")))
+  "Face for deleted code."
   :group 'jira-markup-faces)
 
 (defface jira-markup-list-face
@@ -348,11 +356,11 @@ Otherwise, they will be treated as [[PageName|alias text]]."
 
 ; text effects
 (defconst jira-markup-regex-strong
-  "\\s-+\\*.*\\*\\s-+"
+  "\\s-+\\*.*?\\*\\s-+"
   "Regular expression for matching *strong* text.")
 
 (defconst jira-markup-regex-emphasis
-  "\\s-+_.*_\\s-+"
+  "\\s-+_.*?_\\s-+"
   "Regular expression for matching _emphasized_ text.")
 
 ; new
@@ -362,27 +370,27 @@ Otherwise, they will be treated as [[PageName|alias text]]."
 
 ; new
 (defconst jira-markup-regex-deleted
-  "\\s-+-.*-\\s-"
+  "\\s-+\\(-.*?-\\)\\s-"
   "Regular expression for matching -deleted- text.")
 
 ; new
 (defconst jira-markup-regex-inserted
-  "\\s-+\\+.*\\+\\s-+"
+  "\\s-+\\+.*?\\+\\s-+"
   "Regular expression for matching +inserted+ text.")
 
 ; new
 (defconst jira-markup-regex-superscript
-  "\\s-+^.*^\\s-+"
+  "\\s-+^.*?^\\s-+"
   "Regular expression for matching ^superscript^ text.")
 
 ; new
 (defconst jira-markup-regex-subscript
-  "\\s-+~.*~\\s-+"
+  "\\s-+~.*?~\\s-+"
   "Regular expression for matching ~subscript~ text.")
 
 ; new
 (defconst jira-markup-regex-monospaced
-  "\\s-+{{.*}}\\s-+"
+  "\\s-+{{.*?}}\\s-+"
   "Regular expression for matching {{monospaced}} text.")
 
 (defconst jira-markup-regex-blockquote
@@ -425,35 +433,33 @@ text.")
   "Regular expression for matching indentation of list items.")
 
 (defvar jira-markup-mode-font-lock-keywords-basic
-  (list
-   '(jira-markup-match-pre-blocks 0 jira-markup-pre-face t t)
-   '(jira-markup-match-fenced-code-blocks 0 jira-markup-pre-face t t)
-   (cons jira-markup-regex-blockquote 'jira-markup-blockquote-face)
-   (cons jira-markup-regex-header-1 'jira-markup-header-face-1)
-   (cons jira-markup-regex-header-2 'jira-markup-header-face-2)
-   (cons jira-markup-regex-header-3 'jira-markup-header-face-3)
-   (cons jira-markup-regex-header-4 'jira-markup-header-face-4)
-   (cons jira-markup-regex-header-5 'jira-markup-header-face-5)
-   (cons jira-markup-regex-header-6 'jira-markup-header-face-6)
-   (cons jira-markup-regex-hr 'jira-markup-header-face)
-   (cons jira-markup-regex-code '(2 jira-markup-inline-code-face))
-   (cons jira-markup-regex-angle-uri 'jira-markup-link-face)
-   (cons jira-markup-regex-uri 'jira-markup-link-face)
-   (cons jira-markup-regex-email 'jira-markup-link-face)
-   (cons jira-markup-regex-list 'jira-markup-list-face)
-   (cons jira-markup-regex-link-inline
-         '((1 jira-markup-link-face t)
-           (2 jira-markup-url-face t)))
-   (cons jira-markup-regex-link-reference
-         '((1 jira-markup-link-face t)
-           (2 jira-markup-reference-face t)))
-   (cons jira-markup-regex-reference-definition
-         '((1 jira-markup-reference-face t)
-           (2 jira-markup-url-face t)
-           (3 jira-markup-link-title-face t)))
-   (cons jira-markup-regex-strong '(2 jira-markup-bold-face))
-   (cons jira-markup-regex-emphasis '(2 jira-markup-italic-face))
-   )
+  `((jira-markup-match-pre-blocks 0 jira-markup-pre-face t t)
+    (jira-markup-match-fenced-code-blocks 0 jira-markup-pre-face t t)
+    (,jira-markup-regex-blockquote . jira-markup-blockquote-face)
+    (,jira-markup-regex-header-1 . jira-markup-header-face-1)
+    (,jira-markup-regex-header-2 . jira-markup-header-face-2)
+    (,jira-markup-regex-header-3 . jira-markup-header-face-3)
+    (,jira-markup-regex-header-4 . jira-markup-header-face-4)
+    (,jira-markup-regex-header-5 . jira-markup-header-face-5)
+    (,jira-markup-regex-header-6 . jira-markup-header-face-6)
+    (,jira-markup-regex-hr . jira-markup-header-face)
+    (,jira-markup-regex-code . (2 jira-markup-inline-code-face))
+    (,jira-markup-regex-angle-uri . jira-markup-link-face)
+    (,jira-markup-regex-uri . jira-markup-link-face)
+    (,jira-markup-regex-email . jira-markup-link-face)
+    (,jira-markup-regex-list . jira-markup-list-face)
+    (,jira-markup-regex-monospaced . jira-markup-inline-code-face)
+    (,jira-markup-regex-deleted 1 jira-markup-deleted-face)
+    (,jira-markup-regex-link-inline (1 jira-markup-link-face t)
+                                    (2 jira-markup-url-face t))
+    (,jira-markup-regex-link-reference (1 jira-markup-link-face t)
+                                       (2 jira-markup-reference-face t))
+    (,jira-markup-regex-reference-definition (1 jira-markup-reference-face t)
+                                             (2 jira-markup-url-face t)
+                                             (3 jira-markup-link-title-face t))
+    (,jira-markup-regex-strong . jira-markup-bold-face)
+    (,jira-markup-regex-emphasis . jira-markup-italic-face)
+    )
   "Syntax highlighting for Jira-Markup files.")
 
 (defvar jira-markup-mode-font-lock-keywords
@@ -666,16 +672,16 @@ This helps improve font locking for block constructs such as pre blocks."
 ;;; Element Insertion =========================================================
 
 (defun jira-markup-wrap-or-insert (s1 s2)
- "Insert the strings S1 and S2.
+  "Insert the strings S1 and S2.
 If Transient Mark mode is on and a region is active, wrap the strings S1
 and S2 around the region."
- (if (and transient-mark-mode mark-active)
-     (let ((a (region-beginning)) (b (region-end)))
-       (goto-char a)
-       (insert s1)
-       (goto-char (+ b (length s1)))
-       (insert s2))
-   (insert s1 s2)))
+  (if (and transient-mark-mode mark-active)
+      (let ((a (region-beginning)) (b (region-end)))
+        (goto-char a)
+        (insert s1)
+        (goto-char (+ b (length s1)))
+        (insert s2))
+    (insert s1 s2)))
 
 (defun jira-markup-insert-hr ()
   "Insert a horizonal rule using `jira-markup-hr-string'."
@@ -689,7 +695,7 @@ and S2 around the region."
   ;; Following blank line
   (backward-char)
   (unless (looking-at "\n\n")
-          (insert "\n")))
+    (insert "\n")))
 
 (defun jira-markup-insert-bold ()
   "Insert markup for a bold word or phrase.
@@ -744,7 +750,7 @@ paragraph."
       (insert text))
     (insert (concat "]: " url))
     (unless (> (length url) 0)
-        (setq end (point)))
+      (setq end (point)))
     (when (> (length title) 0)
       (insert (concat " \"" title "\"")))
     (insert "\n")
@@ -854,7 +860,7 @@ of each line."
         (goto-char end)
         (if (not (or (looking-at "\n\n")
                      (and (equal (1+ end) (point-max)) (looking-at "\n"))))
-          (insert "\n"))
+            (insert "\n"))
         ;; Insert PREFIX
         (goto-char beg)
         (beginning-of-line)
@@ -924,8 +930,8 @@ default indentation level."
     ;; Previous non-list-marker indent
     (setq pos (jira-markup-prev-non-list-indent))
     (when pos
-        (setq positions (cons pos positions))
-        (setq positions (cons (+ pos tab-width) positions)))
+      (setq positions (cons pos positions))
+      (setq positions (cons (+ pos tab-width) positions)))
 
     ;; Indentation of the previous line + tab-width
     (cond
@@ -1066,12 +1072,12 @@ returned by `match-data'.  Note that the potential wiki link name must
 be available via `match-string'."
   (let ((case-fold-search nil))
     (and (thing-at-point-looking-at jira-markup-regex-wiki-link)
-	 (or (not buffer-file-name)
-	     (not (string-equal (buffer-file-name)
-				(jira-markup-convert-wiki-link-to-filename
+         (or (not buffer-file-name)
+             (not (string-equal (buffer-file-name)
+                                (jira-markup-convert-wiki-link-to-filename
                                  (jira-markup-wiki-link-link)))))
-	 (not (save-match-data
-		(save-excursion))))))
+         (not (save-match-data
+                (save-excursion))))))
 
 (defun jira-markup-wiki-link-link ()
   "Return the link part of the wiki link using current match data.
@@ -1147,15 +1153,15 @@ and highlight accordingly."
   (goto-char from)
   (while (re-search-forward jira-markup-regex-wiki-link to t)
     (let ((highlight-beginning (match-beginning 0))
-	  (highlight-end (match-end 0))
-	  (file-name
-	   (jira-markup-convert-wiki-link-to-filename
+          (highlight-end (match-end 0))
+          (file-name
+           (jira-markup-convert-wiki-link-to-filename
             (jira-markup-wiki-link-link))))
       (if (file-exists-p file-name)
-	  (jira-markup-highlight-wiki-link
-	   highlight-beginning highlight-end jira-markup-link-face)
-	(jira-markup-highlight-wiki-link
-	 highlight-beginning highlight-end jira-markup-missing-link-face)))))
+          (jira-markup-highlight-wiki-link
+           highlight-beginning highlight-end jira-markup-link-face)
+        (jira-markup-highlight-wiki-link
+         highlight-beginning highlight-end jira-markup-missing-link-face)))))
 
 (defun jira-markup-extend-changed-region (from to)
   "Extend region given by FROM and TO so that we can fontify all links.
@@ -1165,14 +1171,14 @@ newline after."
   (goto-char from)
   (re-search-backward "\n" nil t)
   (let ((new-from (point-min))
-	(new-to (point-max)))
+        (new-to (point-max)))
     (if (not (= (point) from))
-	(setq new-from (point)))
+        (setq new-from (point)))
     ;; do the same thing for the first new line after 'to
     (goto-char to)
     (re-search-forward "\n" nil t)
     (if (not (= (point) to))
-	(setq new-to (point)))
+        (setq new-to (point)))
     (list new-from new-to)))
 
 (defun jira-markup-check-change-for-wiki-link (from to change)
@@ -1182,13 +1188,13 @@ CHANGE is the number of bytes of pre-change text replaced by the
 given range."
   (interactive "nfrom: \nnto: \nnchange: ")
   (let* ((inhibit-quit t)
-	 (modified (buffer-modified-p))
-	 (buffer-undo-list t)
-	 (inhibit-read-only t)
-	 (inhibit-point-motion-hooks t)
-	 (inhibit-modification-hooks t)
-	 (current-point (point))
-	 deactivate-mark)
+         (modified (buffer-modified-p))
+         (buffer-undo-list t)
+         (inhibit-read-only t)
+         (inhibit-point-motion-hooks t)
+         (inhibit-modification-hooks t)
+         (current-point (point))
+         deactivate-mark)
     (unwind-protect
         (save-match-data
           (save-restriction
@@ -1270,9 +1276,9 @@ This is an exact copy of `line-number-at-pos' for use in emacs21."
 
   ;; Prepare hooks for XEmacs compatibility
   (when (featurep 'xemacs)
-      (make-local-hook 'after-change-functions)
-      (make-local-hook 'font-lock-extend-region-functions)
-      (make-local-hook 'window-configuration-change-hook))
+    (make-local-hook 'after-change-functions)
+    (make-local-hook 'font-lock-extend-region-functions)
+    (make-local-hook 'window-configuration-change-hook))
 
   ;; Multiline font lock
   (add-hook 'font-lock-extend-region-functions
@@ -1285,7 +1291,7 @@ This is an exact copy of `line-number-at-pos' for use in emacs21."
   ;; creating one of the wiki link documents. Make sure we get
   ;; refontified when we come back.
   (add-hook 'window-configuration-change-hook
-	    'jira-markup-fontify-buffer-wiki-links t t)
+            'jira-markup-fontify-buffer-wiki-links t t)
 
   ;; do the initial link fontification
   (jira-markup-fontify-buffer-wiki-links))
