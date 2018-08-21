@@ -162,6 +162,9 @@ Otherwise, they will be treated as [[PageName|alias text]]."
 (defvar jira-markup-inline-code-face 'jira-markup-inline-code-face
   "Face name to use for inline code.")
 
+(defvar jira-markup-deleted-face 'jira-markup-deleted-face
+  "Face name to use for deleted code.")
+
 (defvar jira-markup-list-face 'jira-markup-list-face
   "Face name to use for list markers.")
 
@@ -239,6 +242,11 @@ Otherwise, they will be treated as [[PageName|alias text]]."
 (defface jira-markup-inline-code-face
   '((t (:inherit font-lock-constant-face)))
   "Face for inline code."
+  :group 'jira-markup-faces)
+
+(defface jira-markup-deleted-face
+  '((t (:inherit shadow :strike-through "red")))
+  "Face for deleted code."
   :group 'jira-markup-faces)
 
 (defface jira-markup-list-face
