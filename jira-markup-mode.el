@@ -370,7 +370,7 @@ Otherwise, they will be treated as [[PageName|alias text]]."
 
 ; new
 (defconst jira-markup-regex-deleted
-  "\\s-+-.*?-\\s-"
+  "\\s-+\\(-.*?-\\)\\s-"
   "Regular expression for matching -deleted- text.")
 
 ; new
@@ -450,7 +450,7 @@ text.")
    (cons jira-markup-regex-email 'jira-markup-link-face)
    (cons jira-markup-regex-list 'jira-markup-list-face)
    (cons jira-markup-regex-monospaced 'jira-markup-inline-code-face)
-   (cons jira-markup-regex-deleted 'jira-markup-deleted-face)
+   (list jira-markup-regex-deleted 1 'jira-markup-deleted-face)
    (cons jira-markup-regex-link-inline
          '((1 jira-markup-link-face t)
            (2 jira-markup-url-face t)))
