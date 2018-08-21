@@ -449,6 +449,8 @@ text.")
    (cons jira-markup-regex-uri 'jira-markup-link-face)
    (cons jira-markup-regex-email 'jira-markup-link-face)
    (cons jira-markup-regex-list 'jira-markup-list-face)
+   (cons jira-markup-regex-monospaced 'jira-markup-inline-code-face)
+   (cons jira-markup-regex-deleted 'jira-markup-deleted-face)
    (cons jira-markup-regex-link-inline
          '((1 jira-markup-link-face t)
            (2 jira-markup-url-face t)))
